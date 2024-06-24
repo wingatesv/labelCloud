@@ -74,35 +74,61 @@ def setup_example_project() -> None:
     )
 
 
+# def start_gui():
+#     import sys
+
+#     from PyQt5.QtWidgets import QApplication, QDesktopWidget
+
+#     from labelCloud.control.controller import Controller
+#     from labelCloud.view.gui import GUI
+
+#     app = QApplication(sys.argv)
+
+#     # Setup Model-View-Control structure
+#     control = Controller()
+#     view = GUI(control)
+
+#     # Install event filter to catch user interventions
+#     app.installEventFilter(view)
+
+#     # Start GUI
+#     view.show()
+
+#     app.setStyle("Fusion")
+#     desktop = QDesktopWidget().availableGeometry()
+#     width = (desktop.width() - view.width()) // 2
+#     height = (desktop.height() - view.height()) // 2
+#     view.move(width, height)
+
+#     logging.info("Showing GUI...")
+#     sys.exit(app.exec_())
+
 def start_gui():
     import sys
-
     from PyQt5.QtWidgets import QApplication, QDesktopWidget
-
     from labelCloud.control.controller import Controller
-    from labelCloud.view.gui import GUI
+    from labelCloud.view.startup.main_menu import MainMenu
+    from labelCloud.view.gui import GUI 
 
-    app = QApplication(sys.argv)
+    app = QApplication.instance() or QApplication(sys.argv)
+    
+    # Show MainMenu first
+    main_menu = MainMenu()
 
-    # Setup Model-View-Control structure
-    control = Controller()
-    view = GUI(control)
+    app.installEventFilter(main_menu)
 
-    # Install event filter to catch user interventions
-    app.installEventFilter(view)
+    main_menu.show()
 
-    # Start GUI
-    view.show()
+    
 
     app.setStyle("Fusion")
     desktop = QDesktopWidget().availableGeometry()
-    width = (desktop.width() - view.width()) // 2
-    height = (desktop.height() - view.height()) // 2
-    view.move(width, height)
-
-    logging.info("Showing GUI...")
+    width = (desktop.width() - main_menu.width()) // 2
+    height = (desktop.height() - main_menu.height()) // 2
+    main_menu.move(width, height)
+    
+    logging.info("Showing Main Menu...")
     sys.exit(app.exec_())
-
 
 if __name__ == "__main__":
     main()
