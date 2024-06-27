@@ -73,16 +73,19 @@ def setup_example_project() -> None:
         "\n - labels/exemplary.json"
     )
 
+    
 
 # def start_gui():
 #     import sys
-
+   
 #     from PyQt5.QtWidgets import QApplication, QDesktopWidget
 
 #     from labelCloud.control.controller import Controller
 #     from labelCloud.view.gui import GUI
 
 #     app = QApplication(sys.argv)
+#     # PyQt5 version: 5.15.9
+#     # Qt version: 5.15.2
 
 #     # Setup Model-View-Control structure
 #     control = Controller()
