@@ -1,5 +1,5 @@
-from PyQt5.QtWidgets import QMainWindow, QPushButton, QVBoxLayout, QWidget
-from PyQt5.QtCore import QSize
+from PyQt5.QtWidgets import QMainWindow, QPushButton, QVBoxLayout, QWidget, QLabel, QGridLayout
+from PyQt5.QtCore import QSize, Qt
 from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QDesktopWidget
 from labelCloud.control.controller import Controller
@@ -23,10 +23,37 @@ class MainMenu(QMainWindow):
         self.setWindowTitle("MIMOS Main Menu")
         self.setMinimumSize(QSize(500, 500))
 
+        # Set up the layout managers
+        central_widget = self.findChild(QWidget, 'centralwidget')
+        main_layout = QVBoxLayout(central_widget)
+        main_layout.setAlignment(Qt.AlignCenter)
 
-        # Set up the existing button (assuming it's named annotate_pushButton)
+        # Title label
+        self.title_label = self.findChild(QLabel, 'title_label')
+        self.title_label.setAlignment(Qt.AlignCenter)
+
+        # Button layout
+        button_layout = QVBoxLayout()
+        button_layout.setSpacing(20)
+
+        self.annotate_pushButton = self.findChild(QPushButton, 'annotate_pushButton')
+        self.aug_pushButton = self.findChild(QPushButton, 'aug_pushButton')
+        self.training_pushButton = self.findChild(QPushButton, 'training_pushButton')
+        self.inf_pushButton = self.findChild(QPushButton, 'inf_pushButton')
+
+        buttons = [self.annotate_pushButton, self.aug_pushButton, self.training_pushButton, self.inf_pushButton]
+        for button in buttons:
+            button.setMinimumSize(QSize(150, 50))
+            button.setStyleSheet("background-color: #007AFF; color: white; border-radius: 10px;")
+            button_layout.addWidget(button)
+
+        main_layout.addWidget(self.title_label)
+        main_layout.addLayout(button_layout)
+
+        # Connect buttons to their functions
         self.annotate_pushButton.clicked.connect(self.on_annotate_button_clicked)
 
+        # Apply the stylesheet
         theme = "dark" if self.is_dark_mode() else "light"
         self.setProperty("theme", theme)
         self.setStyleSheet(self.get_stylesheet())
@@ -41,7 +68,6 @@ class MainMenu(QMainWindow):
             return os_theme == "Dark"
         # Add other platform-specific checks if necessary
         return False
-
 
     def start_gui(self):
         app = QApplication.instance() or QApplication(sys.argv)
@@ -67,8 +93,6 @@ class MainMenu(QMainWindow):
         logging.info("Showing Annotation GUI...")
         # sys.exit(app.exec_())
 
-
-    
     def get_stylesheet(self):
         return """
         QWidget {
@@ -92,4 +116,3 @@ class MainMenu(QMainWindow):
         }
         """
 
-     
