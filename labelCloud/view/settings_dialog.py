@@ -5,7 +5,10 @@ from pathlib import Path
 
 import pkg_resources
 from PyQt5 import uic
-from PyQt5.QtWidgets import QDialog
+from PyQt5.QtWidgets import QDialog, QApplication
+from PyQt5.QtCore import QSettings, Qt
+from PyQt5.QtGui import QPalette
+import platform
 
 from ..control.config_manager import config, config_manager
 from ..control.label_manager import LabelManager
@@ -24,9 +27,11 @@ class SettingsDialog(QDialog):
         )
         self.fill_with_current_settings()
 
-        self.buttonBox.accepted.connect(self.save)
-        self.buttonBox.rejected.connect(self.chancel)
+        self.save_button.clicked.connect(self.save)
+        self.cancel_button.clicked.connect(self.cancel)
         self.reset_button.clicked.connect(self.reset)
+
+        self.apply_theme()
 
     def fill_with_current_settings(self) -> None:
         # File
@@ -181,10 +186,128 @@ class SettingsDialog(QDialog):
             path_to_label_folder=Path(config["FILE"]["label_folder"]),
         )
         logging.info("Saved and activated new configuration!")
+        self.accept()  # Close the dialog after saving
 
     def reset(self) -> None:
         config_manager.reset_to_default()
         self.fill_with_current_settings()
 
-    def chancel(self) -> None:
-        logging.info("Settings dialog was chanceled!")
+    def cancel(self) -> None:
+        logging.info("Settings dialog was canceled!")
+        self.reject()  # Close the dialog when canceled
+
+
+    def is_dark_mode(self):
+        palette = QApplication.palette()
+        return palette.color(QPalette.Window).lightness() < 128
+
+    def apply_theme(self):
+        is_dark = self.is_dark_mode()
+
+        theme = "dark" if is_dark else "light"
+   
+        self.setProperty("theme", theme)
+        self.setStyleSheet(self.get_stylesheet())
+        current_theme = self.property("theme")
+        print(f"Current theme property: {current_theme}")
+
+    def get_stylesheet(self):
+        return """
+        QDialog {
+            background-color: #ffffff;
+            color: black;
+        }
+
+        QDialog[theme="dark"] {
+            background-color: #1E1E1E;
+            color: white;
+        }
+
+        QLabel {
+            background-color: transparent;
+            color: black;
+        }
+
+        QDialog[theme="dark"] QLabel {
+            color: white;
+        }
+
+        QLineEdit {
+            background-color: white;
+            color: black;
+        }
+
+        QDialog[theme="dark"] QLineEdit {
+            background-color: #2E2E2E;
+            color: white;
+        }
+
+        QCheckBox {
+            color: inherit;
+        }
+
+        QDialog[theme="dark"] QCheckBox {
+            background-color: black;
+            color: white;
+        }
+
+        QPlainTextEdit {
+            background-color: white;
+            color: black;
+        }
+
+        QDialog[theme="dark"] QPlainTextEdit {
+            background-color: black;
+            color: white;
+        }
+
+        QComboBox {
+            background-color: white;
+            color: black;
+        }
+
+        QDialog[theme="dark"] QComboBox {
+            background-color: #2E2E2E;
+            color: white;
+        }
+
+        QDoubleSpinBox {
+            background-color: white;
+            color: black;
+        }
+
+        QDialog[theme="dark"] QDoubleSpinBox {
+            background-color: #2E2E2E;
+            color: white;
+        }
+
+        QSpinBox {
+            background-color: white;
+            color: black;
+        }
+
+        QDialog[theme="dark"] QSpinBox {
+            background-color: #2E2E2E;
+            color: white;
+        }
+
+        QPushButton {
+            background-color: white;
+            color: black;
+            border-radius: 10px;
+            border: 1px solid black;
+        }
+
+        QDialog[theme="dark"] QPushButton {
+            background-color: black;
+            color: white;
+            border-radius: 10px;
+            border: 1px solid white;
+        }
+
+        """
+
+
+
+
+
