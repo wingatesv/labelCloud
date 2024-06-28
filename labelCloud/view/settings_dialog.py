@@ -198,9 +198,11 @@ class SettingsDialog(QDialog):
 
 
     def is_dark_mode(self):
-        palette = QApplication.palette()
-        return palette.color(QPalette.Window).lightness() < 128
-
+        if platform.system() == "Darwin":  # macOS
+            os_theme = QSettings().value("AppleInterfaceStyle", "Light")
+            return os_theme == "Dark"
+        # Add other platform-specific checks if necessary
+        return False
     def apply_theme(self):
         is_dark = self.is_dark_mode()
 
