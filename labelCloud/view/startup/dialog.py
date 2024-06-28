@@ -1,7 +1,7 @@
 import traceback
-
+import platform
 import pkg_resources
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QSettings
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import (
     QComboBox,
@@ -50,6 +50,10 @@ class StartupDialog(QDialog):
         main_layout.setAlignment(Qt.AlignTop)
         self.setLayout(main_layout)
 
+        # Apply dark mode stylesheet if in dark mode
+        if self.is_dark_mode():
+            self.apply_dark_mode_stylesheet()
+
         # 1. Row: Selection of labeling mode via checkable buttons
         self.button_semantic_segmentation: QPushButton
         self.add_labeling_mode_row(main_layout)
@@ -66,6 +70,40 @@ class StartupDialog(QDialog):
         self.buttonBox.rejected.connect(self.reject)
 
         main_layout.addWidget(self.buttonBox)
+
+    def apply_dark_mode_stylesheet(self):
+        dark_mode_stylesheet = """
+        QDialog {
+            background-color: #2E2E2E;
+            color: white;
+        }
+        QLabel {
+            color: white;
+        }
+        QLineEdit {
+            background-color: #3E3E3E;
+            color: white;
+            border: 1px solid #5E5E5E;
+        }
+        QPushButton {
+            background-color: #4E4E4E;
+            color: white;
+            border: 1px solid #6E6E6E;
+        }
+        QComboBox {
+            background-color: #3E3E3E;
+            color: white;
+            border: 1px solid #5E5E5E;
+        }
+        """
+        self.setStyleSheet(dark_mode_stylesheet)
+
+    def is_dark_mode(self):
+        if platform.system() == "Darwin":  # macOS
+            os_theme = QSettings().value("AppleInterfaceStyle", "Light")
+            return os_theme == "Dark"
+        # Add other platform-specific checks if necessary
+        return False
 
     # ---------------------------------------------------------------------------- #
     #                                     SETUP                                    #
