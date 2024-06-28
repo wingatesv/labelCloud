@@ -5,7 +5,7 @@ import sys
 import traceback
 from pathlib import Path
 from typing import TYPE_CHECKING, Optional, Set
-
+import platform
 import pkg_resources
 from PyQt5 import QtCore, QtGui, QtWidgets, uic
 from PyQt5.QtCore import QEvent
@@ -18,8 +18,10 @@ from PyQt5.QtWidgets import (
     QInputDialog,
     QLabel,
     QMessageBox,
+    QApplication,
 )
-
+from PyQt5.QtCore import QSettings
+from PyQt5.QtGui import QPalette
 from ..control.config_manager import config
 from ..definitions import Color3f, LabelingMode
 from ..io.labels.config import LabelConfig
@@ -247,6 +249,7 @@ class GUI(QtWidgets.QMainWindow):
         self.connect_events()
         self.set_checkbox_states()  # tick in menu
 
+    
         # Run startup dialog
         self.startup_dialog = StartupDialog()
         if self.startup_dialog.exec():
@@ -267,6 +270,48 @@ class GUI(QtWidgets.QMainWindow):
         self.timer.timeout.connect(self.controller.loop_gui)
         self.timer.start()
 
+        # Apply dark mode stylesheet if in dark mode
+        if self.is_dark_mode():
+            self.apply_dark_mode_stylesheet()
+
+        # Initialize the current_class_dropdown with class names
+        self.update_current_class_dropdown()
+
+    
+    def apply_dark_mode_stylesheet(self):
+        dark_mode_stylesheet = """
+        QMainWindow {
+            background-color: #2E2E2E;
+            color: white;
+        }
+        QLabel {
+            color: white;
+        }
+        QLineEdit {
+            background-color: #3E3E3E;
+            color: white;
+            border: 1px solid #5E5E5E;
+        }
+        QPushButton {
+            background-color: #4E4E4E;
+            color: white;
+            border: 1px solid #6E6E6E;
+        }
+        QComboBox {
+            background-color: #3E3E3E;
+            color: white;
+            border: 1px solid #5E5E5E;
+        }
+        """
+        self.setStyleSheet(dark_mode_stylesheet)
+
+    def is_dark_mode(self):
+        if platform.system() == "Darwin":  # macOS
+            os_theme = QSettings().value("AppleInterfaceStyle", "Light")
+            return os_theme == "Dark"
+        # Add other platform-specific checks if necessary
+        return False
+    
     # Event connectors
     def connect_events(self) -> None:
         # POINTCLOUD CONTROL
@@ -507,7 +552,63 @@ class GUI(QtWidgets.QMainWindow):
             f"cloud file formats:\n {', '.join(pcd_extensions)}."
         )
         msg.setWindowTitle("No Point Clouds Found")
+
+        # Apply stylesheet based on the theme
+        if self.is_dark_mode():
+            msg.setStyleSheet("""
+                QMessageBox {
+                    background-color: #333333;
+                    color: white;
+                }
+                QMessageBox QLabel {
+                    color: white;
+                    background-color: #333333;
+                }
+                QMessageBox QPushButton {
+                    background-color: #555555;
+                    color: white;
+                    border: 1px solid #444444;
+                    border-radius: 5px;
+                    padding: 5px;
+                }
+                QMessageBox QPushButton:hover {
+                    background-color: #777777;
+                }
+                QMessageBox QPushButton:pressed {
+                    background-color: #999999;
+                }
+            """)
+        else:
+            msg.setStyleSheet("""
+                QMessageBox {
+                    background-color: white;
+                    color: black;
+                }
+                QMessageBox QLabel {
+                    color: black;
+                    background-color: white;
+                }
+                QMessageBox QPushButton {
+                    background-color: #f0f0f0;
+                    color: black;
+                    border: 1px solid #cccccc;
+                    border-radius: 5px;
+                    padding: 5px;
+                }
+                QMessageBox QPushButton:hover {
+                    background-color: #e0e0e0;
+                }
+                QMessageBox QPushButton:pressed {
+                    background-color: #d0d0d0;
+                }
+            """)
+
+
         msg.exec_()
+
+    def is_dark_mode(self):
+        palette = QApplication.palette()
+        return palette.color(QPalette.Window).lightness() < 128
 
     # VISUALIZATION METHODS
 
