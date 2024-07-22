@@ -81,7 +81,7 @@ def set_propagate_labels(state: bool) -> None:
 STYLESHEET = """
     * {{
         background-color: #FFF;
-        font-family: "DejaVu Sans", Arial;
+        font-family: Arial, sans-serif;
     }}
 
     QMenu::item:selected {{
