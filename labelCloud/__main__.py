@@ -3,7 +3,6 @@ import logging
 
 from labelCloud import __version__
 
-
 def main():
     parser = argparse.ArgumentParser(
         description="Label 3D bounding boxes inside point clouds."
@@ -113,16 +112,12 @@ def start_gui():
     from labelCloud.view.startup.main_menu import MainMenu
     from labelCloud.view.gui import GUI 
 
-    app = QApplication.instance() or QApplication(sys.argv)
+    # app = QApplication.instance() or QApplication(sys.argv)
+    app = QApplication(sys.argv)
     
     # Show MainMenu first
     main_menu = MainMenu()
-
-    app.installEventFilter(main_menu)
-
     main_menu.show()
-
-    
 
     app.setStyle("Fusion")
     desktop = QDesktopWidget().availableGeometry()
