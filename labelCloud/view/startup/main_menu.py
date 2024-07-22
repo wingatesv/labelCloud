@@ -4,6 +4,9 @@ from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QDesktopWidget
 from labelCloud.control.controller import Controller
 from labelCloud.view.gui import GUI
+from labelCloud.view.augmentation import AugmentationController, AugmentationWindow
+from labelCloud.view.training import TrainingController, TrainingWindow
+from labelCloud.view.inference import InferenceController, InferenceWindow
 import pkg_resources
 import logging
 import sys
@@ -51,34 +54,24 @@ class MainMenu(QMainWindow):
         main_layout.addLayout(button_layout)
 
         # Connect buttons to their functions
-        self.annotate_pushButton.clicked.connect(self.on_annotate_button_clicked)
+        self.annotate_pushButton.clicked.connect(lambda: self.start_application(GUI, Controller))
+        self.aug_pushButton.clicked.connect(lambda: self.start_application(AugmentationWindow, AugmentationController))
+        self.training_pushButton.clicked.connect(lambda: self.start_application(TrainingWindow, TrainingController))
+        self.inf_pushButton.clicked.connect(lambda: self.start_application(InferenceWindow, InferenceController))
 
         # Apply the stylesheet
         theme = "dark" if self.is_dark_mode() else "light"
         self.setProperty("theme", theme)
         self.setStyleSheet(self.get_stylesheet())
 
-    def on_annotate_button_clicked(self):
-        self.start_gui()
-        self.close()
 
-    def is_dark_mode(self):
-        if platform.system() == "Darwin":  # macOS
-            os_theme = QSettings().value("AppleInterfaceStyle", "Light")
-            return os_theme == "Dark"
-        # Add other platform-specific checks if necessary
-        return False
-
-    def start_gui(self):
+    def start_application(self, window_class, controller_class):
+  
         app = QApplication.instance() or QApplication(sys.argv)
 
-        # Setup Model-View-Control structure
-        control = Controller()
-        view = GUI(control)
-
+        control = controller_class()
+        view = window_class(control)
         app.installEventFilter(view)
-
-        # Start GUI
         view.show()
 
         app.setStyle("Fusion")
@@ -87,11 +80,43 @@ class MainMenu(QMainWindow):
         height = (desktop.height() - view.height()) // 2
         view.move(width, height)
 
-        # Close the main menu page when annotate_pushButton is clicked
-        self.annotate_pushButton.clicked.connect(self.close)
 
-        logging.info("Showing Annotation GUI...")
+        logging.info(f"Showing {window_class.__name__} window...")
+
+        # self.close()
+        # Uncomment the following line if you want to start the event loop
         # sys.exit(app.exec_())
+
+    def is_dark_mode(self):
+        if platform.system() == "Darwin":  # macOS
+            os_theme = QSettings().value("AppleInterfaceStyle", "Light")
+            return os_theme == "Dark"
+        # Add other platform-specific checks if necessary
+        return False
+
+    # def start_gui(self):
+    #     app = QApplication.instance() or QApplication(sys.argv)
+
+    #     # Setup Model-View-Control structure
+    #     control = Controller()
+    #     view = GUI(control)
+
+    #     app.installEventFilter(view)
+
+    #     # Start GUI
+    #     view.show()
+
+    #     app.setStyle("Fusion")
+    #     desktop = QDesktopWidget().availableGeometry()
+    #     width = (desktop.width() - view.width()) // 2
+    #     height = (desktop.height() - view.height()) // 2
+    #     view.move(width, height)
+
+    #     # Close the main menu page when annotate_pushButton is clicked
+    #     self.annotate_pushButton.clicked.connect(self.close)
+
+    #     logging.info("Showing Annotation GUI...")
+    #     # sys.exit(app.exec_())
 
     def get_stylesheet(self):
         return """
