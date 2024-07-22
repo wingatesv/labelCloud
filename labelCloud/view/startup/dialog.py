@@ -1,6 +1,7 @@
 import traceback
 import platform
 import pkg_resources
+import logging
 from PyQt5.QtCore import Qt, QSettings
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import (
@@ -27,6 +28,8 @@ from ...io.labels.exceptions import (
 from .class_list import ClassList
 from .labeling_mode import SelectLabelingMode
 
+# Suppress specific loggers related to qt.qpa
+logging.getLogger('qt.qpa.window').setLevel(logging.CRITICAL)
 
 class StartupDialog(QDialog):
     def __init__(self, parent=None) -> None:
