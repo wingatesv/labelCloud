@@ -125,7 +125,7 @@ def start_gui():
     height = (desktop.height() - main_menu.height()) // 2
     main_menu.move(width, height)
     
-    logging.info("Showing Main Menu........")
+    logging.info("Showing Main Menu..............")
     sys.exit(app.exec_())
 
 if __name__ == "__main__":
