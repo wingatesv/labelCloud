@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../icons/labelCloud.ico</normaloff>../icons/labelCloud.ico</iconset>
+    <normaloff>../icons/mimos.ico</normaloff>../icons/mimos.ico</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
@@ -42,7 +42,7 @@
          <string/>
         </property>
         <property name="pixmap">
-         <pixmap>../icons/labelCloud_icon.png</pixmap>
+         <pixmap>../icons/mimos.png</pixmap>
         </property>
         <property name="scaledContents">
          <bool>true</bool>
