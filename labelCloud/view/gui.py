@@ -126,7 +126,7 @@ class GUI(QtWidgets.QMainWindow):
             self,
         )
         self.resize(1500, 900)
-        self.setWindowTitle("labelCloud")
+        self.setWindowTitle("PointCloud Annotation")
         self.setStyleSheet(
             STYLESHEET.format(
                 icons_dir=str(
