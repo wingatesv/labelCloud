@@ -4,7 +4,7 @@
 	"path": "pointclouds/exemplary.ply",
 	"objects": [
 		{
-			"name": "cart",
+			"name": "unassigned",
 			"centroid": {
 				"x": -0.1908196,
 				"y": -0.23602801,
