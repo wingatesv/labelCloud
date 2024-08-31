@@ -1,735 +1,445 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>SettingsDialog</class>
- <widget class="QDialog" name="SettingsDialog">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>888</width>
-    <height>620</height>
+    <width>1009</width>
+    <height>832</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Change Settings</string>
+   <string>3D Object Detection Model Training</string>
   </property>
-  <layout class="QHBoxLayout" name="horizontalLayout">
-   <item>
-    <layout class="QGridLayout" name="gridLayout">
-     <property name="sizeConstraint">
-      <enum>QLayout::SetMaximumSize</enum>
-     </property>
-     <property name="rightMargin">
-      <number>0</number>
-     </property>
-     <item row="13" column="1" colspan="2">
-      <widget class="QCheckBox" name="checkBox_keepperspective">
-       <property name="toolTip">
-        <string>Applies the last perspective of the previous point cloud to the current point cloud when loading.</string>
-       </property>
-       <property name="text">
-        <string>Keep last Perspective between Point Clouds</string>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="1">
-      <widget class="QLabel" name="label_pointcolor">
-       <property name="toolTip">
-        <string>Point color for colorless point clouds (r,g,b).</string>
-       </property>
-       <property name="text">
-        <string>Point Color
-(for colorless point clouds)</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QLabel" name="label_labelfolder">
-       <property name="toolTip">
-        <string>Path to the folder where the label files will be saved.</string>
-       </property>
-       <property name="text">
-        <string>Label Folder</string>
-       </property>
-      </widget>
-     </item>
-     <item row="9" column="1">
-      <widget class="QLabel" name="title_userinterface">
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">margin-top: 10px</string>
-       </property>
-       <property name="text">
-        <string>User Interface</string>
-       </property>
-      </widget>
-     </item>
-     <item row="17" column="1" colspan="2">
-      <widget class="QLabel" name="label">
-       <property name="font">
-        <font>
-         <italic>true</italic>
-        </font>
-       </property>
-       <property name="text">
-        <string>Note: Some settings might require a restart to take effect!</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="1">
-      <widget class="QLabel" name="label_standardtranslation">
-       <property name="toolTip">
-        <string>Standard step for point cloud translation.</string>
-       </property>
-       <property name="text">
-        <string>Standard Translation</string>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="2">
-      <widget class="QLineEdit" name="lineEdit_pointcolor">
-       <property name="toolTip">
-        <string>Point color for colorless point clouds (r,g,b).</string>
-       </property>
-      </widget>
-     </item>
-     <item row="10" column="2">
-      <widget class="QLineEdit" name="lineEdit_backgroundcolor">
-       <property name="toolTip">
-        <string>Background color of the point cloud viewer (rgb).</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="2">
-      <widget class="QLineEdit" name="lineEdit_pointcloudfolder">
-       <property name="toolTip">
-        <string>Path to the folder that contains the point cloud files.</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="2">
-      <widget class="QLineEdit" name="lineEdit_labelfolder">
-       <property name="toolTip">
-        <string>Path to the folder where the label files will be saved.</string>
-       </property>
-      </widget>
-     </item>
-     <item row="12" column="1" colspan="2">
-      <widget class="QCheckBox" name="checkBox_showbboxorientation">
-       <property name="toolTip">
-        <string>Visualizes the object's orientation with an arrow.</string>
-       </property>
-       <property name="text">
-        <string>Show Bounding Box Orientation</string>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="1">
-      <widget class="QLabel" name="label_standardzoom">
-       <property name="toolTip">
-        <string>Standard step for zooming.</string>
-       </property>
-       <property name="text">
-        <string>Standard Zoom Factor</string>
-       </property>
-      </widget>
-     </item>
-     <item row="8" column="1" colspan="2">
-      <widget class="QCheckBox" name="checkBox_colorizecolorless">
-       <property name="toolTip">
-        <string>Colerize colorless point clouds by height value.</string>
-       </property>
-       <property name="text">
-        <string>Colorize colorless point clouds by height</string>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="2">
-      <widget class="QDoubleSpinBox" name="doubleSpinBox_pointsize">
-       <property name="toolTip">
-        <string>Rasterized diameter of each point from the point cloud.</string>
-       </property>
-       <property name="decimals">
-        <number>2</number>
-       </property>
-       <property name="maximum">
-        <double>500.000000000000000</double>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="1">
-      <widget class="QLabel" name="label_pointsize">
-       <property name="toolTip">
-        <string>Rasterized diameter of each point from the point cloud.</string>
-       </property>
-       <property name="text">
-        <string>Point Size</string>
-       </property>
-      </widget>
-     </item>
-     <item row="15" column="2">
-      <widget class="QSpinBox" name="spinBox_viewingprecision">
-       <property name="toolTip">
-        <string>number of decimal places shown for the parameters of the active bounding box.</string>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="2">
-      <widget class="QDoubleSpinBox" name="doubleSpinBox_standardzoom">
-       <property name="toolTip">
-        <string>Standard step for zooming.</string>
-       </property>
-       <property name="decimals">
-        <number>4</number>
-       </property>
-       <property name="singleStep">
-        <double>0.010000000000000</double>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="2">
-      <widget class="QDoubleSpinBox" name="doubleSpinBox_standardtranslation">
-       <property name="toolTip">
-        <string>Standard step for point cloud translation.</string>
-       </property>
-       <property name="decimals">
-        <number>4</number>
-       </property>
-       <property name="singleStep">
-        <double>0.010000000000000</double>
-       </property>
-      </widget>
-     </item>
-     <item row="11" column="1" colspan="2">
-      <widget class="QCheckBox" name="checkBox_showfloor">
-       <property name="toolTip">
-        <string>Visualizes the pointcloud floor (x-y-plane) as a grid.</string>
-       </property>
-       <property name="text">
-        <string>Show Point Cloud Floor (x-y-Plane)</string>
-       </property>
-      </widget>
-     </item>
-     <item row="15" column="1">
-      <widget class="QLabel" name="label_viewingprecision">
-       <property name="toolTip">
-        <string>number of decimal places shown for the parameters of the active bounding box.</string>
-       </property>
-       <property name="text">
-        <string>Viewing Precision of
-Bounding Box Parameter</string>
-       </property>
-      </widget>
-     </item>
-     <item row="10" column="1">
-      <widget class="QLabel" name="label_backgroundcolor">
-       <property name="toolTip">
-        <string>Background color of the point cloud viewer (rgb).</string>
-       </property>
-       <property name="text">
-        <string>Background Color</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLabel" name="title_filesettings">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>File Settings</string>
-       </property>
-      </widget>
-     </item>
-     <item row="16" column="1">
-      <spacer name="verticalSpacer_2">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>40</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="3" column="1" colspan="2">
-      <widget class="QLabel" name="title_pointcloudsettings">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">margin-top: 10px</string>
-       </property>
-       <property name="text">
-        <string>Point Cloud Settings</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QLabel" name="label_pointcloudfolder">
-       <property name="toolTip">
-        <string>Path to the folder that contains the point cloud files.</string>
-       </property>
-       <property name="text">
-        <string>Point Cloud Folder</string>
-       </property>
-      </widget>
-     </item>
-     <item row="14" column="1" colspan="2">
-      <widget class="QCheckBox" name="checkBox_show2dimage">
-       <property name="text">
-        <string>Show related 2D Images in new Window</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <spacer name="horizontalSpacer">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="sizeType">
-      <enum>QSizePolicy::Fixed</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>40</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item>
-    <layout class="QGridLayout" name="gridLayout_2">
-     <property name="sizeConstraint">
-      <enum>QLayout::SetMaximumSize</enum>
-     </property>
-     <property name="rightMargin">
-      <number>0</number>
-     </property>
-     <item row="10" column="1">
-      <widget class="QLabel" name="label_exportprecision">
-       <property name="toolTip">
-        <string>Number of decimal places shown for the parameters of the active bounding box.</string>
-       </property>
-       <property name="text">
-        <string>Export Precision</string>
-       </property>
-      </widget>
-     </item>
-     <item row="12" column="1">
-      <widget class="QLabel" name="label_stdbboxtranslation">
-       <property name="toolTip">
-        <string>Standard step for translating the bounding box (meter).</string>
-       </property>
-       <property name="text">
-        <string>Standard Translation Step</string>
-       </property>
-      </widget>
-     </item>
-     <item row="9" column="1" colspan="2">
-      <widget class="QCheckBox" name="checkBox_propagatelabels">
-       <property name="text">
-        <string>Propagate Labels (copy all bounding boxes to the next point cloud)</string>
-       </property>
-      </widget>
-     </item>
-     <item row="18" column="1">
-      <widget class="QPushButton" name="reset_button">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="text">
-        <string>Reset to Default</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QLabel" name="label_objectclasses">
-       <property name="toolTip">
-        <string>List of object classes for autocompletion in the text field.</string>
-       </property>
-       <property name="text">
-        <string>Object Classes</string>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="2">
-      <widget class="QPlainTextEdit" name="plainTextEdit_objectclasses">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="toolTip">
-        <string>List of object classes for autocompletion in the text field.</string>
-       </property>
-       <property name="sizeAdjustPolicy">
-        <enum>QAbstractScrollArea::AdjustToContents</enum>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="2">
-      <widget class="QDoubleSpinBox" name="doubleSpinBox_stdbboxheight">
-       <property name="toolTip">
-        <string>Default height of the bounding box (for picking mode).</string>
-       </property>
-       <property name="decimals">
-        <number>3</number>
-       </property>
-       <property name="maximum">
-        <double>500.000000000000000</double>
-       </property>
-       <property name="singleStep">
-        <double>0.100000000000000</double>
-       </property>
-      </widget>
-     </item>
-     <item row="15" column="1">
-      <widget class="QLabel" name="label_minbboxdimensions">
-       <property name="toolTip">
-        <string>Minimum value for the length, width and height of a bounding box.</string>
-       </property>
-       <property name="text">
-        <string>Min. Bounding Box Dimensions</string>
-       </property>
-      </widget>
-     </item>
-     <item row="13" column="1">
-      <widget class="QLabel" name="label_stdbboxrotation">
-       <property name="toolTip">
-        <string>Standard step for rotating the bounding box (degree).</string>
-       </property>
-       <property name="text">
-        <string>Standard Rotation Step</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QLabel" name="label_labelformat">
-       <property name="toolTip">
-        <string>Format for exporting labels.</string>
-       </property>
-       <property name="text">
-        <string>Label Format</string>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="1">
-      <widget class="QLabel" name="label_stdbboxwidth">
-       <property name="toolTip">
-        <string>Default width of the bounding box (for picking mode).</string>
-       </property>
-       <property name="text">
-        <string>Standard Bounding Box Width</string>
-       </property>
-      </widget>
-     </item>
-     <item row="16" column="1">
-      <spacer name="verticalSpacer">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Expanding</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>30</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="14" column="2">
-      <widget class="QDoubleSpinBox" name="doubleSpinBox_stdbboxscaling">
-       <property name="toolTip">
-        <string>Standard step for scaling the bounding box.</string>
-       </property>
-       <property name="decimals">
-        <number>3</number>
-       </property>
-       <property name="maximum">
-        <double>500.000000000000000</double>
-       </property>
-       <property name="singleStep">
-        <double>0.010000000000000</double>
-       </property>
-      </widget>
-     </item>
-     <item row="10" column="2">
-      <widget class="QSpinBox" name="spinBox_exportprecision">
-       <property name="toolTip">
-        <string>Number of decimal places shown for the parameters of the active bounding box.</string>
-       </property>
-      </widget>
-     </item>
-     <item row="13" column="2">
-      <widget class="QDoubleSpinBox" name="doubleSpinBox_stdbboxrotation">
-       <property name="toolTip">
-        <string>Standard step for rotating the bounding box (degree).</string>
-       </property>
-       <property name="decimals">
-        <number>3</number>
-       </property>
-       <property name="maximum">
-        <double>364.000000000000000</double>
-       </property>
-       <property name="singleStep">
-        <double>0.100000000000000</double>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="1">
-      <widget class="QLabel" name="label_stdbboxlength">
-       <property name="toolTip">
-        <string>Default length of the bounding box (for picking mode).</string>
-       </property>
-       <property name="text">
-        <string>Standard Bounding Box Length</string>
-       </property>
-      </widget>
-     </item>
-     <item row="16" column="2">
-      <spacer name="verticalSpacer_3">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeType">
-        <enum>QSizePolicy::Expanding</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>40</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item row="4" column="1">
-      <widget class="QLabel" name="label_defaultobjectclass">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="toolTip">
-        <string>Default object class for new bounding boxes.</string>
-       </property>
-       <property name="text">
-        <string>Default Object Class</string>
-       </property>
-      </widget>
-     </item>
-     <item row="12" column="2">
-      <widget class="QDoubleSpinBox" name="doubleSpinBox_stdbboxtranslation">
-       <property name="toolTip">
-        <string>Standard step for translating the bounding box (meter).</string>
-       </property>
-       <property name="decimals">
-        <number>3</number>
-       </property>
-       <property name="maximum">
-        <double>500.000000000000000</double>
-       </property>
-       <property name="singleStep">
-        <double>0.100000000000000</double>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="2">
-      <widget class="QDoubleSpinBox" name="doubleSpinBox_stdbboxlength">
-       <property name="toolTip">
-        <string>Default length of the bounding box (for picking mode).</string>
-       </property>
-       <property name="decimals">
-        <number>3</number>
-       </property>
-       <property name="maximum">
-        <double>500.000000000000000</double>
-       </property>
-       <property name="singleStep">
-        <double>0.100000000000000</double>
-       </property>
-      </widget>
-     </item>
-     <item row="4" column="2">
-      <widget class="QComboBox" name="comboBox_defaultobjectclass">
-       <property name="toolTip">
-        <string>Default object class for new bounding boxes.</string>
-       </property>
-      </widget>
-     </item>
-     <item row="6" column="2">
-      <widget class="QDoubleSpinBox" name="doubleSpinBox_stdbboxwidth">
-       <property name="toolTip">
-        <string>Default width of the bounding box (for picking mode).</string>
-       </property>
-       <property name="decimals">
-        <number>3</number>
-       </property>
-       <property name="maximum">
-        <double>500.000000000000000</double>
-       </property>
-       <property name="singleStep">
-        <double>0.100000000000000</double>
-       </property>
-      </widget>
-     </item>
-     <item row="7" column="1">
-      <widget class="QLabel" name="label_stdbboxheight">
-       <property name="toolTip">
-        <string>Default height of the bounding box (for picking mode).</string>
-       </property>
-       <property name="text">
-        <string>Standard Bounding Box Height</string>
-       </property>
-      </widget>
-     </item>
-     <item row="15" column="2">
-      <widget class="QDoubleSpinBox" name="doubleSpinBox_minbboxdimensions">
-       <property name="toolTip">
-        <string>Minimum value for the length, width and height of a bounding box.</string>
-       </property>
-       <property name="decimals">
-        <number>3</number>
-       </property>
-       <property name="singleStep">
-        <double>0.001000000000000</double>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="2">
-      <widget class="QComboBox" name="comboBox_labelformat">
-       <property name="toolTip">
-        <string>Format for exporting labels.</string>
-       </property>
-      </widget>
-     </item>
-     <item row="14" column="1">
-      <widget class="QLabel" name="label_stdbboxscaling">
-       <property name="toolTip">
-        <string>Standard step for scaling the bounding box.</string>
-       </property>
-       <property name="text">
-        <string>Standard Scaling Step</string>
-       </property>
-      </widget>
-     </item>
-     <item row="8" column="1" colspan="2">
-      <widget class="QCheckBox" name="checkBox_zrotationonly">
-       <property name="toolTip">
-        <string>Only allow z-rotation of bounding boxes. Deactivate to also label x- &amp; y-rotation.</string>
-       </property>
-       <property name="text">
-        <string>Z-Rotation-Only Mode (otherwise rotation around x, y and z)</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLabel" name="title_labelsettings">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Label Settings</string>
-       </property>
-      </widget>
-     </item>
-     <item row="17" column="2">
-      <widget class="QPushButton" name="save_button">
-       <property name="text">
-        <string>Save</string>
-       </property>
-      </widget>
-     </item>
-     <item row="18" column="2">
-      <widget class="QPushButton" name="cancel_button">
-       <property name="text">
-        <string>Cancel</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-  </layout>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout_main">
+    <item>
+     <widget class="QGroupBox" name="preprocessingGroupBox">
+      <property name="title">
+       <string>Preprocessing Module</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_preprocessing">
+       <item>
+        <widget class="QCheckBox" name="downsampleCheckBox">
+         <property name="text">
+          <string>Downsample Point Cloud</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_downsample">
+         <item>
+          <widget class="QLabel" name="downsampleLabel">
+           <property name="text">
+            <string>Every K Points:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="downsampleSpinBox">
+           <property name="minimum">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <number>100</number>
+           </property>
+           <property name="value">
+            <number>8</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="removeOutlierCheckBox">
+         <property name="text">
+          <string>Remove Statistical Outlier</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_removeOutlier">
+         <item>
+          <widget class="QLabel" name="nbNeighborsLabel">
+           <property name="text">
+            <string>Neighbors:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="nbNeighborsSpinBox">
+           <property name="minimum">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <number>100</number>
+           </property>
+           <property name="value">
+            <number>5</number>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="stdRatioLabel">
+           <property name="text">
+            <string>Std Ratio:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QDoubleSpinBox" name="stdRatioDoubleSpinBox">
+           <property name="minimum">
+            <double>0.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>100.000000000000000</double>
+           </property>
+           <property name="value">
+            <double>1.0</double>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="roiCroppingCheckBox">
+         <property name="text">
+          <string>ROI Cropping</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_roiCropping">
+         <item>
+          <widget class="QLabel" name="roiCroppingLabel">
+           <property name="text">
+            <string>X Range:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QDoubleSpinBox" name="roiCroppingSpinBox">
+           <property name="minimum">
+            <double>0.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>100.000000000000000</double>
+           </property>
+           <property name="value">
+            <double>10.0</double>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_magnify">
+         <item>
+          <widget class="QLabel" name="magnifyPCLable">
+           <property name="text">
+            <string>Magnify Point Cloud:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="magnifyPCSpinBox">
+           <property name="minimum">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <number>100</number>
+           </property>
+           <property name="value">
+            <number>20</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_labelMagnify">
+         <item>
+          <widget class="QLabel" name="labelMagnifyLabel">
+           <property name="text">
+            <string>Label Magnifying Factor:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QDoubleSpinBox" name="labelMagnifyDoubleSpinBox">
+           <property name="minimum">
+            <double>0.000000000000000</double>
+           </property>
+           <property name="maximum">
+            <double>10.000000000000000</double>
+           </property>
+           <property name="value">
+            <double>1.0</double>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="trainingGroupBox">
+      <property name="title">
+       <string>Model Training Module</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_training">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_backbone">
+         <item>
+          <widget class="QLabel" name="backboneLabel">
+           <property name="text">
+            <string>Backbone Architecture:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QComboBox" name="backboneComboBox">
+           <item>
+            <property name="text">
+             <string>PointPillar</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Point-RCNN</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>PV-RCNN</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_lr">
+         <item>
+          <widget class="QLabel" name="learningRateLabel">
+           <property name="text">
+            <string>Learning Rate:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSlider" name="learningRateSlider">
+           <property name="minimum">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <number>10000</number>
+           </property>
+           <property name="value">
+            <number>100</number>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="learningRateValueLabel">
+           <property name="text">
+            <string>0.01</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_batchSize">
+         <item>
+          <widget class="QLabel" name="batchSizeLabel">
+           <property name="text">
+            <string>Batch Size:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSlider" name="batchSizeSlider">
+           <property name="minimum">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <number>32</number>
+           </property>
+           <property name="value">
+            <number>4</number>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="batchSizeValueLabel">
+           <property name="text">
+            <string>4</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_epoch">
+         <item>
+          <widget class="QLabel" name="epochLabel">
+           <property name="text">
+            <string>Epoch:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSpinBox" name="epochSpinBox">
+           <property name="minimum">
+            <number>1</number>
+           </property>
+           <property name="maximum">
+            <number>500</number>
+           </property>
+           <property name="value">
+            <number>100</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="dataDirectoryGroupBox">
+      <property name="title">
+       <string>Data Directory</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_dataDirectory">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_trainingData">
+         <item>
+          <widget class="QLabel" name="trainingDataLabel">
+           <property name="text">
+            <string>Training Data Directory:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="trainingDataLineEdit"/>
+         </item>
+         <item>
+          <widget class="QPushButton" name="browseTrainingDataButton">
+           <property name="text">
+            <string>Browse</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_labelData">
+         <item>
+          <widget class="QLabel" name="labelDataLabel">
+           <property name="text">
+            <string>Label Data Directory:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="labelDataLineEdit"/>
+         </item>
+         <item>
+          <widget class="QPushButton" name="browseLabelDataButton">
+           <property name="text">
+            <string>Browse</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="verticalLayout_buttons">
+      <item>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Expanding</enum>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_buttons">
+        <item>
+         <spacer name="horizontalSpacer_1">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Expanding</enum>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QPushButton" name="startTrainingButton">
+          <property name="text">
+           <string>Start Training</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="cancelButton">
+          <property name="text">
+           <string>Cancel</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="resetButton">
+          <property name="text">
+           <string>Reset</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_2">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Expanding</enum>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1009</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>checkBox_colorizecolorless</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>lineEdit_pointcolor</receiver>
-   <slot>setHidden(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>199</x>
-     <y>246</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>281</x>
-     <y>217</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>checkBox_colorizecolorless</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>label_pointcolor</receiver>
-   <slot>setDisabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>199</x>
-     <y>246</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>87</x>
-     <y>217</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>
