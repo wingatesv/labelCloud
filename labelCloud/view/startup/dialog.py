@@ -36,7 +36,7 @@ class StartupDialog(QDialog):
         super().__init__(parent)
         self.parent_gui = parent
 
-        self.setWindowTitle("Welcome to labelCloud")
+        self.setWindowTitle("Point Cloud Annotation Menu")
         screen_size = QDesktopWidget().availableGeometry(self).size()
         self.resize(screen_size * 0.5)
         self.setWindowIcon(
