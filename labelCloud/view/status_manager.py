@@ -23,6 +23,7 @@ class StatusManager:
         self.message_label.setAlignment(QtCore.Qt.AlignLeft)
         self.status_bar.addWidget(self.message_label, stretch=1)
 
+
         self.msg_context = Context.DEFAULT
 
     def set_mode(self, mode: Mode) -> None:
