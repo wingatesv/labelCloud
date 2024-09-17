@@ -4,6 +4,8 @@ from PyQt5 import uic
 from PyQt5.QtCore import QSize, QSettings
 import pkg_resources
 import platform
+import sys
+from pathlib import Path
 
 class InferenceController:
     def __init__(self):
@@ -61,12 +63,8 @@ class InferenceController:
 class InferenceWindow(QMainWindow):
     def __init__(self, control: InferenceController):
         super(InferenceWindow, self).__init__()
-        uic.loadUi(
-            pkg_resources.resource_filename(
-                "labelCloud.resources.interfaces", "inference_interface.ui"
-            ),
-            self,
-        )
+        ui_path = self._get_ui_path("inference_interface.ui")
+        uic.loadUi( ui_path,self)
         self.setWindowTitle("3D Object Detection Model Inference")
         self.setMinimumSize(QSize(500, 500))
 
@@ -78,7 +76,17 @@ class InferenceWindow(QMainWindow):
 
         # Connect with controller
         self.controller.startup(self)
-
+    def _get_ui_path(self, ui_filename):
+            """Get the path to the UI file, considering whether running in PyInstaller bundle or not."""
+            if getattr(sys, 'frozen', False):
+                # Running in a PyInstaller bundle
+                base_path = Path(sys._MEIPASS)
+            else:
+                # Running in a development environment
+                base_path = Path(__file__).resolve().parent.parent
+            
+            return base_path / "resources" / "interfaces" / ui_filename
+        
     def apply_dark_mode_stylesheet(self):
         dark_mode_stylesheet = """
         QMainWindow {
