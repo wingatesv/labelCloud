@@ -1,5 +1,5 @@
 import logging
-from PyQt5.QtWidgets import QMainWindow, QPushButton
+from PyQt5.QtWidgets import QMainWindow, QPushButton, QMessageBox
 from PyQt5 import uic
 from PyQt5.QtCore import QSize, QSettings
 import pkg_resources
