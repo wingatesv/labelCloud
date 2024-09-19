@@ -2,14 +2,11 @@ import logging
 from PyQt5.QtWidgets import QMainWindow, QPushButton, QMessageBox
 from PyQt5 import uic
 from PyQt5.QtCore import QSize, QSettings
-import pkg_resources
-import platform
-import sys
 from pathlib import Path
 import pkg_resources
 import platform
 import sys
-from pathlib import Path
+
 
 from tools.demo_2 import run_demo
 
